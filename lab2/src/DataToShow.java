@@ -25,8 +25,8 @@ public class DataToShow {
         data = new Object[Main.collection.books.size()][];
         for (int i = 0; i < Main.collection.books.size(); i++){
             data[i] = Main.collection.books.get(i).toArray();
-
-            for (int j = 0; j < data[i].length; j++) {
+            data[i][0] = i;
+            for (int j = 1; j < data[i].length; j++) {
                 if (data[i][j].getClass().getName().equals(Double.class.getName())) {
                     data[i][j] = LanguageChoice.currencyFormatter.format(data[i][j]);
                 } else if (data[i][j].getClass().getName().equals(Date.class.getName())) {
@@ -37,15 +37,16 @@ public class DataToShow {
     }
 
     private static void translateHeader(){
-        columnNames = new String[Main.collection.header.length];
-        for (int i = 0; i < Main.collection.header.length; i++){
-            if (Main.collection.header[i].equals("price")){
+        columnNames = new String[Main.collection.header.length+1];
+        columnNames[0] = "ID";
+        for (int i = 1; i < Main.collection.header.length+1; i++){
+            if (Main.collection.header[i-1].equals("price")){
                 columnNames[i] = MessageFormat.format(
                         LanguageChoice.messages.getString("price"),
                         LanguageChoice.currencyInstance.getDisplayName(LanguageChoice.currentLocale),
                         LanguageChoice.currencyInstance.getSymbol(LanguageChoice.currentLocale));
             }
-            else columnNames[i] = LanguageChoice.messages.getString(Main.collection.header[i]);
+            else columnNames[i] = LanguageChoice.messages.getString(Main.collection.header[i-1]);
         }
     }
 

@@ -29,12 +29,13 @@ public class Book {
     }
 
     public Object[] toArray(){
-        Object[] array = new Object[5];
-        array[0] = author;
-        array[1] = title;
-        array[2] = publicationDate;
-        array[3] = price;
-        array[4] = cover;
+        Object[] array = new Object[6];
+        array[0] = 0;
+        array[1] = author;
+        array[2] = title;
+        array[3] = publicationDate;
+        array[4] = price;
+        array[5] = cover;
         return array;
     }
 }

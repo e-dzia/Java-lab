@@ -14,7 +14,8 @@ public class Window {
     private JComboBox comboBoxLanguages;
     private JTable table;
     private JTextField textField1;
-    private JButton button_edit;
+    private JButton usunButton;
+    private JComboBox comboBox1;
 
     private DefaultTableModel tableModel;
 
@@ -26,6 +27,7 @@ public class Window {
                 LanguageChoice.setLocale();
                 DataToShow.prepareData();
                 textField1.setText(DataToShow.textNumOfObj);
+                usunButton.setText(LanguageChoice.messages.getString("remove"));
                 addColumns();
             }
         });
@@ -35,9 +37,19 @@ public class Window {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = table.rowAtPoint(evt.getPoint());
                 int col = table.columnAtPoint(evt.getPoint());
-                if (row >= 0 && col == 4) {
+                if (row >= 0 && col == 5) {
                     ShowImage.normal((Icon) DataToShow.data[row][col]);
                 }
+            }
+        });
+        usunButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int choice = Integer.parseInt(comboBox1.getSelectedItem().toString());
+                Main.collection.books.remove(choice);
+                DataToShow.prepareData();
+                textField1.setText(DataToShow.textNumOfObj);
+                addColumns();
             }
         });
     }
@@ -56,12 +68,18 @@ public class Window {
         for (int i = 0; i < LanguageChoice.languages.length; i++){
             window.comboBoxLanguages.addItem(LanguageChoice.languages[i]);
         }
+
     }
 
     private void addColumns() {
         tableModel.setColumnCount(0);
         for (int i = 0; i < DataToShow.columnNames.length; i++){
             tableModel.addColumn(DataToShow.columnNames[i]);
+        }
+
+        comboBox1.removeAllItems();
+        for (int i = 0; i < DataToShow.data.length; i++){
+            comboBox1.addItem(DataToShow.data[i][0]);
         }
     }
 
