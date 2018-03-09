@@ -1,50 +1,64 @@
-import com.sun.org.apache.xpath.internal.SourceTree;
-
-import java.lang.ref.ReferenceQueue;
+import java.io.*;
 import java.util.*;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Main {
     public static  ExecutorService exec = Executors.newFixedThreadPool(5);
-    public static ReferenceQueue<Collection> referenceQueue = new ReferenceQueue<>();
-    public static Map<Integer,Collection> collectionMap
-            = Collections.synchronizedMap(new WeakHashMap<Integer,Collection>());
+    public static Map<Integer,Collection> collectionMap = Collections.synchronizedMap(new WeakHashMap<>());
+    public static ArrayList<Boolean> allFinished = new ArrayList<Boolean>();
 
     private static class Task implements Runnable {
         static Random generator = new Random();
+        PrintWriter output;
 
         public void run() {
-            for (int i = 0; i < 5; i++){
+            try {
+                output = new PrintWriter("output_" + Thread.currentThread().getId()+".txt", "UTF-8");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            boolean madeNewCollection;
+
+            for (int i = 0; i < 10; i++){
                 int grain = generator.nextInt(4000);
+                madeNewCollection = false;
                 if (!collectionMap.containsKey(grain)){
                     collectionMap.put(grain, new Collection(grain));
+                    madeNewCollection = true;
                 }
                 Double min = collectionMap.get(grain).countMinimum();
+                String message = "Watek: " + Thread.currentThread().getId() +
+                        ", Ziarno: " + grain + ", Min: " + min + ", Stworzenie kolekcji: " + madeNewCollection;
                 synchronized (System.out) {
-                    System.out.println(grain + " " + Thread.currentThread().getId());
-                    System.out.println("Min: " + min + " " + Thread.currentThread().getId());
-                    System.out.println(collectionMap.keySet().size());
+                    System.out.println(message);
+                    System.out.println(Collection.deletedObjects);
                 }
+                output.write(message+"\n");
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            System.gc();
-            System.out.println("Col: " + Collection.finalizes);
+            output.close();
+            synchronized (allFinished){
+                allFinished.remove(0);
+            }
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         for (int i = 0; i < 5; i++){
             exec.execute(new Task());
+            allFinished.add(false);
         }
-        if (!exec.isShutdown()) {
-            exec.shutdown();
-            System.out.println("Col: " + Collection.finalizes);
+        while(allFinished.size()>0) {
+            Thread.sleep(1000);
         }
+        exec.shutdown();
+        System.out.println("Col: " + Collection.deletedObjects);
     }
 }

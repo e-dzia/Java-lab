@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 
 public class Collection {
-    public static int finalizes = 0;
+    public static int deletedObjects = 0;
     ArrayList<Double> collection = new ArrayList<>();
 
     public Collection(int grain){
         long size = 1000000 + grain*100;
         for (int i = 0; i < size; i++){
-            collection.add(grain * 200 + 2000.0 * i);
+            collection.add(grain * 200 + 2000.0 * i + 0.5);
         }
     }
 
     public void finalize(){
-        finalizes++;
+        deletedObjects++;
     }
 
     public Double countMinimum(){
