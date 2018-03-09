@@ -34,7 +34,6 @@ public class Main {
                         ", Ziarno: " + grain + ", Min: " + min + ", Stworzenie kolekcji: " + madeNewCollection;
                 synchronized (System.out) {
                     System.out.println(message);
-                    System.out.println(Collection.deletedObjects);
                 }
                 output.write(message+"\n");
                 try {
