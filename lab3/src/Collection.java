@@ -5,13 +5,14 @@ public class Collection {
     ArrayList<Double> collection = new ArrayList<>();
 
     public Collection(int grain){
-        long size = 1000000 + grain*100;
+        long size = 5000000 + grain*100;
         for (int i = 0; i < size; i++){
             collection.add(grain * 200 + 2000.0 * i + 0.5);
         }
     }
 
     public void finalize(){
+        //System.out.println("\t\t\t\t%Usuwam: " + (collection.size()-1000000)/100);
         deletedObjects++;
     }
 
