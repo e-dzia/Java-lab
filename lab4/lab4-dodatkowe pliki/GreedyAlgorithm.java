@@ -9,12 +9,20 @@ public class GreedyAlgorithm implements Algorithm {
         this.numberOfCities = (int) Math.sqrt(array.length);
     }
 
-    public void print(){
-        System.out.println("Dlugosc: " + minLength);
+    public String print(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Dlugosc: " + minLength + "\n");
         for (int i = 0; i < numberOfCities; i++){
-            System.out.print(path[i] + "\t");
+            stringBuilder.append(path[i] + " ");
         }
-        System.out.println();
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String getInfo() {
+        return "Algorytm zachlanny (algorytm najblizszego sasiada) - z kazdego miasta wybiera najkrotsza droge do kolejnego miasta. " +
+                "Zwykle nie znajduje optymalnej trasy. ";
     }
 
     public void algorithm(){

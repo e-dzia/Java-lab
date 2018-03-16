@@ -32,12 +32,20 @@ public class BestOfAlgorithm implements Algorithm {
     }
 
     @Override
-    public void print() {
-        System.out.println("Dlugosc: " + minLength);
+    public String print() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Dlugosc: " + minLength + "\n");
         for (int i = 0; i < numberOfCities; i++){
-            System.out.print(path[i] + "\t");
+            stringBuilder.append(path[i] + " ");
         }
-        System.out.println();
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String getInfo() {
+        return "Wykonuje dwa algorytmy - przeszukiwanie zupelne oraz algorytm zachlnny. " +
+                "Nastepnie wybiera rozwiazanie, ktre jest lepsze i zwraca jego wynik.";
     }
 
     public int[] getPath() {

@@ -5,22 +5,30 @@ public class BruteForceAlgorithm implements Algorithm {
     private int path[];
     private int minLength;
 
-    public BruteForceAlgorithm(int array[]){
+    public BruteForceAlgorithm(int array[]) {
         this.array = array;
         this.numberOfCities = (int) Math.sqrt(array.length);
     }
 
-    public void print(){
-        System.out.println("Dlugosc: " + minLength);
+    public String print() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Dlugosc: " + minLength + "\n");
         for (int i = 0; i < numberOfCities; i++){
-            System.out.print(path[i] + "\t");
+            stringBuilder.append(path[i] + " ");
         }
-        System.out.println();
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
     }
 
-    public void algorithm(){
+    @Override
+    public String getInfo() {
+        return "Algorytm przeszukiwania zupelnego - przeszukuje wszystkie mozliwe rozwiazania " +
+                "i wybiera to, ktore jest najkrotsze. Dzieki temu znajduje rozwiazanie, ktore zawsze jest optymalne.";
+    }
+
+    public void algorithm() {
         int permutation[] = new int[numberOfCities];
-        for (int i = 0; i < numberOfCities; i++){
+        for (int i = 0; i < numberOfCities; i++) {
             permutation[i] = i;
         }
         path = new int[numberOfCities];
@@ -32,19 +40,16 @@ public class BruteForceAlgorithm implements Algorithm {
     }
 
     int permute(int[] permutation, int left, int right, Integer min, int[] result) {
-        if (left == right){
+        if (left == right) {
             Integer length = countPath(permutation);
-            if (length < min){
+            if (length < min) {
                 min = length;
-                for (int i = 0; i < numberOfCities; i++){
-                    result[i] =  permutation[i];
+                for (int i = 0; i < numberOfCities; i++) {
+                    result[i] = permutation[i];
                 }
             }
-        }
-        else
-        {
-            for (int i = left; i <= right; i++)
-            {
+        } else {
+            for (int i = left; i <= right; i++) {
                 int tmp = permutation[i];
                 permutation[i] = permutation[left];
                 permutation[left] = tmp;
@@ -62,11 +67,11 @@ public class BruteForceAlgorithm implements Algorithm {
     int countPath(int[] permutation) {
         int length = 0;
         int end = 0;
-        for (int i = 1; i < numberOfCities; i++){
-            length += array[permutation[i]*numberOfCities + permutation[i-1]];
+        for (int i = 1; i < numberOfCities; i++) {
+            length += array[permutation[i] * numberOfCities + permutation[i - 1]];
             end = i;
         }
-        length += array[permutation[0]*numberOfCities + permutation[end]];
+        length += array[permutation[0] * numberOfCities + permutation[end]];
 
         return length;
     }
