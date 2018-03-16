@@ -1,9 +1,9 @@
 
-public class BruteForceAlgorithm {
-    int array[];
-    int numberOfCities;
-    int path[];
-    int minLength;
+public class BruteForceAlgorithm implements Algorithm {
+    private int array[];
+    private int numberOfCities;
+    private int path[];
+    private int minLength;
 
     public BruteForceAlgorithm(int array[]){
         this.array = array;
@@ -26,14 +26,14 @@ public class BruteForceAlgorithm {
         path = new int[numberOfCities];
 
         Integer min = Integer.MAX_VALUE;
-        permute(permutation, 1, numberOfCities - 1, min, path);
+        min = permute(permutation, 1, numberOfCities - 1, min, path);
         minLength = min;
 
     }
 
-    void permute(int[] permutation, int left, int right, Integer min, int[] result) {
+    int permute(int[] permutation, int left, int right, Integer min, int[] result) {
         if (left == right){
-            int length = countPath(permutation);
+            Integer length = countPath(permutation);
             if (length < min){
                 min = length;
                 for (int i = 0; i < numberOfCities; i++){
@@ -48,13 +48,15 @@ public class BruteForceAlgorithm {
                 int tmp = permutation[i];
                 permutation[i] = permutation[left];
                 permutation[left] = tmp;
-                permute(permutation, left + 1, right, min, result);
+
+                min = permute(permutation, left + 1, right, min, result);
+
                 tmp = permutation[i];
                 permutation[i] = permutation[left];
-                permutation[left] = tmp;//powrót do poprzedniego
+                permutation[left] = tmp;
             }
         }
-
+        return min;
     }
 
     int countPath(int[] permutation) {
@@ -69,12 +71,12 @@ public class BruteForceAlgorithm {
         return length;
     }
 
-
-
-    boolean allVisited(boolean[] visited) {
-        for (int i = 0; i < numberOfCities; i++){
-            if (!visited[i]) return false;
-        }
-        return true;
+    public int[] getPath() {
+        return path;
     }
+
+    public int getMinLength() {
+        return minLength;
+    }
+
 }

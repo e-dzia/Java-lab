@@ -1,8 +1,8 @@
-public class GreedyAlgorithm {
-    int array[];
-    int numberOfCities;
-    int path[];
-    int minLength;
+public class GreedyAlgorithm implements Algorithm {
+    private int array[];
+    private int numberOfCities;
+    private int path[];
+    private int minLength;
 
     public GreedyAlgorithm(int array[]){
         this.array = array;
@@ -58,5 +58,14 @@ public class GreedyAlgorithm {
             if (!visited[i]) return false;
         }
         return true;
+    }
+
+
+    public int[] getPath() {
+        return path;
+    }
+
+    public int getMinLength() {
+        return minLength;
     }
 }

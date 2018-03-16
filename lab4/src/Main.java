@@ -6,14 +6,7 @@ public class Main {
         graphArray.loadFromFile("tsp10.txt");
         graphArray.print();
 
-        System.out.println("Trasa:");
+        //TODO:zaladowac greedy, bruteforce i bestof
 
-        GreedyAlgorithm greedy = new GreedyAlgorithm(graphArray.getArray());
-        greedy.algorithm();
-        greedy.print();
-
-        BruteForceAlgorithm bruteForce = new BruteForceAlgorithm(graphArray.getArray());
-        bruteForce.algorithm();
-        bruteForce.print();
     }
 }
