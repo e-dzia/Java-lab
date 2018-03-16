@@ -2,10 +2,12 @@ import java.util.ArrayList;
 
 public class Collection {
     public static int deletedObjects = 0;
+    public static int madeObjects = 0;
     ArrayList<Double> collection = new ArrayList<>();
 
     public Collection(int grain){
-        long size = 3000000 + grain*100;
+        madeObjects++;
+        long size = 30000 + grain*100;
         try {
             for (int i = 0; i < size; i++) {
                 collection.add(grain * 200 + 2000.0 * i + 0.5);

@@ -1,0 +1,10 @@
+	Tworze kolekcje:	97Watek: 18, Ziarno: 97, Min: 19400.5, Stworzenie kolekcji: true
+	Tworze kolekcje:	2360Watek: 18, Ziarno: 2360, Min: 472000.5, Stworzenie kolekcji: true
+	Tworze kolekcje:	493Watek: 18, Ziarno: 493, Min: 98600.5, Stworzenie kolekcji: true
+	Tworze kolekcje:	1931Watek: 18, Ziarno: 1931, Min: 386200.5, Stworzenie kolekcji: true
+	Tworze kolekcje:	1012Watek: 18, Ziarno: 1012, Min: 202400.5, Stworzenie kolekcji: true
+	Tworze kolekcje:	2829Watek: 18, Ziarno: 2829, Min: 565800.5, Stworzenie kolekcji: true
+	Tworze kolekcje:	1443Watek: 18, Ziarno: 1443, Min: 288600.5, Stworzenie kolekcji: true
+	Tworze kolekcje:	724Watek: 18, Ziarno: 724, Min: 144800.5, Stworzenie kolekcji: true
+	Tworze kolekcje:	2896Watek: 18, Ziarno: 2896, Min: 579200.5, Stworzenie kolekcji: true
+	Tworze kolekcje:	2735Watek: 18, Ziarno: 2735, Min: 547000.5, Stworzenie kolekcji: true

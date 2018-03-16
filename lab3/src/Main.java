@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 
 public class Main {
     static int numberOfThreads = 5;
-    static int numberOfIterations = 5;
+    static int numberOfIterations = 100;
 
     static  ExecutorService exec = Executors.newFixedThreadPool(numberOfThreads);
     static ReferenceQueue<Collection> referenceQueue = new ReferenceQueue<>();
@@ -29,7 +29,7 @@ public class Main {
             boolean madeNewCollection;
 
             for (int i = 0; i < numberOfIterations; i++){
-                Integer grain = generator.nextInt(50);
+                Integer grain = generator.nextInt(1000);
                 madeNewCollection = false;
                 Double min = -1.0;
                 synchronized (collectionMap){
@@ -53,7 +53,7 @@ public class Main {
                 }
                 output.write("Ziarno: " + grain + ", Min: " + min +"\n");
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(350);
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
@@ -74,6 +74,7 @@ public class Main {
             Thread.sleep(1000);
         }
         exec.shutdown();
-        System.out.println("Usuniete kolekcje: " + Collection.deletedObjects);
+        System.out.println("Stworzone kolekcje: " + Collection.madeObjects +
+                        "\nUsuniete kolekcje: " + Collection.deletedObjects);
     }
 }
