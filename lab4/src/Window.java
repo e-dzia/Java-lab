@@ -31,7 +31,7 @@ public class Window {
                 try {
                     algorithmClass = classLoader.loadClass(textField1.getText());
                 } catch (ClassNotFoundException e1) {
-                    e1.printStackTrace();
+                    textPane1.setText("Nie znaleziono klasy.");
                 }
                 listOfClasses.add(algorithmClass);
                 updateGUI();
@@ -49,8 +49,9 @@ public class Window {
                 try {
                     algorithmConstructor = algorithmClass.getConstructor(parametersClass);
                     algorithmObject = algorithmConstructor.newInstance(parameters);
-                } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException | InstantiationException e1) {
-                    e1.printStackTrace();
+                } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException | InstantiationException | NullPointerException e1) {
+                    textPane1.setText("Nie wybrano klasy.");
+                    return;
                 }
 
                 Class[] arguments = new Class[0];
@@ -94,8 +95,9 @@ public class Window {
                 try {
                     algorithmConstructor = algorithmClass.getConstructor(parametersClass);
                     algorithmObject = algorithmConstructor.newInstance(parameters);
-                } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e1) {
-                    e1.printStackTrace();
+                } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException | NullPointerException e1) {
+                    textPane1.setText("Nie wybrano klasy.");
+                    return;
                 }
 
                 Class[] arguments = new Class[0];
