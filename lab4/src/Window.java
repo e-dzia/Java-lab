@@ -1,7 +1,7 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,16 +9,17 @@ import java.util.*;
 
 public class Window {
     private JPanel mainPanel;
-    private JTextField textField1;
     private JButton zaladujButton;
     private JButton wybierzButton;
     private JComboBox comboBox1;
     private JTextPane textPane1;
     private JButton pokazInformacjeButton;
     private JButton wyladujButton;
+    private JButton odswiezButton;
+    private JComboBox comboBox2;
 
-    private ArrayList<Class> listOfClasses = new ArrayList<Class>();
-    private Object[] loadedClasses;
+    private ArrayList<Class> listOfClasses = new ArrayList<>();
+    private ArrayList<String> foundClasses  = new ArrayList<>();
 
 
     public Window() {
@@ -28,8 +29,9 @@ public class Window {
             public void actionPerformed(ActionEvent e) {
                 ClassLoader classLoader = new CustomClassLoader(ClassLoader.getSystemClassLoader());
                 Class algorithmClass = null;
+                String filename = (String) comboBox2.getSelectedItem();
                 try {
-                    algorithmClass = classLoader.loadClass(textField1.getText());
+                    algorithmClass = classLoader.loadClass(filename);
                 } catch (ClassNotFoundException e1) {
                     textPane1.setText("Nie znaleziono klasy.");
                 }
@@ -122,6 +124,27 @@ public class Window {
                 Class algorithmClass = (Class) comboBox1.getSelectedItem();
                 listOfClasses.remove(algorithmClass);
                 updateGUI();
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                System.gc();
+            }
+        });
+        odswiezButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                foundClasses.clear();
+                File folder = new File("lab4-dodatkowe pliki");
+                File[] listOfFiles = folder.listFiles();
+
+                for (int i = 0; i < listOfFiles.length; i++) {
+                    if (listOfFiles[i].isFile() && listOfFiles[i].getName().endsWith(".class")) {
+                        foundClasses.add(listOfFiles[i].getName().split("\\.")[0]);
+                    }
+                }
+                updateGUI();
                 System.gc();
             }
         });
@@ -138,15 +161,17 @@ public class Window {
 
         frame.pack();
         frame.setVisible(true);
-
-
     }
 
     private void updateGUI(){
-        loadedClasses = listOfClasses.toArray();
         comboBox1.removeAllItems();
-        for (Object loadedClass : loadedClasses) {
+        for (Object loadedClass : listOfClasses) {
             comboBox1.addItem(loadedClass);
+        }
+
+        comboBox2.removeAllItems();
+        for (Object foundClass : foundClasses) {
+            comboBox2.addItem(foundClass);
         }
     }
 
