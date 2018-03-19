@@ -17,12 +17,12 @@ public class Window {
     private JButton pokazInformacjeButton;
     private JButton wyladujButton;
 
-    ArrayList<Class> listOfClasses = new ArrayList<Class>();
-    Object[] loadedClasses;
+    private ArrayList<Class> listOfClasses = new ArrayList<Class>();
+    private Object[] loadedClasses;
 
 
     public Window() {
-
+        textPane1.setEditable(false);
         zaladujButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -94,13 +94,7 @@ public class Window {
                 try {
                     algorithmConstructor = algorithmClass.getConstructor(parametersClass);
                     algorithmObject = algorithmConstructor.newInstance(parameters);
-                } catch (InvocationTargetException e1) {
-                    e1.printStackTrace();
-                } catch (NoSuchMethodException e1) {
-                    e1.printStackTrace();
-                } catch (IllegalAccessException e1) {
-                    e1.printStackTrace();
-                } catch (InstantiationException e1) {
+                } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e1) {
                     e1.printStackTrace();
                 }
 
@@ -114,9 +108,7 @@ public class Window {
                 Object info = null;
                 try {
                     info = infoMethod.invoke(algorithmObject,arguments);
-                } catch (IllegalAccessException e1) {
-                    e1.printStackTrace();
-                } catch (InvocationTargetException e1) {
+                } catch (IllegalAccessException | InvocationTargetException e1) {
                     e1.printStackTrace();
                 }
                 textPane1.setText((String) info);
@@ -151,8 +143,8 @@ public class Window {
     private void updateGUI(){
         loadedClasses = listOfClasses.toArray();
         comboBox1.removeAllItems();
-        for (int i = 0; i < loadedClasses.length; i++){
-            comboBox1.addItem(loadedClasses[i]);
+        for (Object loadedClass : loadedClasses) {
+            comboBox1.addItem(loadedClass);
         }
     }
 

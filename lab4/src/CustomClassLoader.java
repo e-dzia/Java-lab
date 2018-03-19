@@ -7,21 +7,6 @@ public class CustomClassLoader extends ClassLoader {
         super(parent);
     }
 
-    private Class<?> getClass(String name) throws ClassNotFoundException {
-        String file = name.replace('.', File.separatorChar) + ".class";
-        byte[] b = null;
-
-        try {
-            b = loadClassData(file);
-            Class<?> c = defineClass(name, b, 0, b.length);
-            resolveClass(c);
-            return c;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
         Class aClass = null;
@@ -42,6 +27,21 @@ public class CustomClassLoader extends ClassLoader {
             aClass = super.loadClass(name);
         }
         return aClass;
+    }
+
+    private Class<?> getClass(String name) throws ClassNotFoundException {
+        String file = name.replace('.', File.separatorChar) + ".class";
+        byte[] b = null;
+
+        try {
+            b = loadClassData(file);
+            Class<?> c = defineClass(name, b, 0, b.length);
+            resolveClass(c);
+            return c;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private byte[] loadClassData(String name) throws IOException {
