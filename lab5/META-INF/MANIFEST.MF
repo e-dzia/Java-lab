@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
 
-Name: Notes.class
+Name: notes.Notes.class
 Java-Bean: True
 
+Name: notes.ListOfNotes.class
+Java-Bean: True
+
+Name: notes.TextField.class
+Java-Bean: True
