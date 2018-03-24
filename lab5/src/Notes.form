@@ -2,21 +2,21 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Notes">
   <grid id="27dc6" binding="panel1" custom-create="true" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="530" height="460"/>
+      <xy x="20" y="20" width="530" height="462"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
       <component id="405fe" class="javax.swing.JButton" binding="dodajButton" default-binding="true">
         <constraints>
-          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="1.0"/>
         </constraints>
         <properties>
           <text value="Dodaj"/>
         </properties>
       </component>
-      <component id="87296" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+      <component id="87296" class="ListOfNotes" binding="comboBox1" custom-create="true" default-binding="true">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="1.0" weighty="0.0"/>
@@ -26,6 +26,84 @@
           <preferredSize width="300" height="26"/>
         </properties>
       </component>
+      <scrollpane id="9ffc">
+        <constraints>
+          <grid row="5" column="1" row-span="5" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+          <minimumSize width="300" height="19"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="57dc6" class="TextField" binding="textArea1" custom-create="true" default-binding="true">
+            <constraints/>
+            <properties>
+              <enabled value="true"/>
+              <minimumSize width="0" height="100"/>
+              <preferredSize width="0" height="100"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <vspacer id="6c0d1">
+        <constraints>
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <hspacer id="bd553">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="47a5d">
+        <constraints>
+          <grid row="5" column="2" row-span="4" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="efbfe">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <hspacer id="53557">
+        <constraints>
+          <grid row="5" column="4" row-span="4" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="66930">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <component id="4a092" class="javax.swing.JButton" binding="usuńButton" default-binding="true">
+        <constraints>
+          <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Usuń"/>
+        </properties>
+      </component>
+      <vspacer id="f1666">
+        <constraints>
+          <grid row="9" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <vspacer id="afc52">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
       <component id="b96f2" class="javax.swing.JLabel" binding="labelTitle">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -39,63 +117,6 @@
           <text value="Notatki"/>
         </properties>
       </component>
-      <scrollpane id="9ffc">
-        <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="1.0"/>
-        </constraints>
-        <properties>
-          <enabled value="true"/>
-          <minimumSize width="300" height="19"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="57dc6" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
-            <constraints/>
-            <properties>
-              <enabled value="true"/>
-              <minimumSize width="0" height="100"/>
-              <preferredSize width="0" height="100"/>
-            </properties>
-          </component>
-        </children>
-      </scrollpane>
-      <vspacer id="6c0d1">
-        <constraints>
-          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-      </vspacer>
-      <hspacer id="bd553">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-      </hspacer>
-      <hspacer id="47a5d">
-        <constraints>
-          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-      </hspacer>
-      <vspacer id="efbfe">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-      </vspacer>
-      <hspacer id="53557">
-        <constraints>
-          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-      </hspacer>
-      <vspacer id="66930">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-      </vspacer>
     </children>
   </grid>
 </form>

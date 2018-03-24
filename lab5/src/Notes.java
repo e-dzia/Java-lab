@@ -2,21 +2,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyVetoException;
+import java.beans.VetoableChangeListener;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Notes extends JPanel implements Serializable {
-    private JTextArea textArea1;
+    private static final long serialVersionUID = 1L;
+
+    private TextField textArea1;
     private JButton dodajButton;
-    private JComboBox comboBox1;
+    private ListOfNotes comboBox1;
     private JPanel panel1;
     private JLabel labelTitle;
+    private JButton usuńButton;
 
-    Map<Date, String> notes = new TreeMap<>();
-
-    private String title = "Notes";
-    private int maxNumberOfNotes = 20; //ograniczona - jak ktoś da mniej niż 10 to veto
+    private String title = "Notes"; //prosta
 
     public Notes() {
         $$$setupUI$$$();
@@ -24,23 +27,18 @@ public class Notes extends JPanel implements Serializable {
         textArea1.setEditable(false);
         labelTitle.setText(title);
 
-        notes.put(new Date(90, 10, 31), "Najstarsza notatka.");
-        notes.put(new Date(96, 2, 24), "Stara notatka.");
-        notes.put(new Date(106, 2, 24), "Nowsza notatka.");
-
-
         updateGUI();
 
         dodajButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (notes.size() >= maxNumberOfNotes) {
+                if (comboBox1.getNotes().size() >= comboBox1.getMaxNumberOfNotes()) {
                     JOptionPane.showMessageDialog(null, "Nie mozna wprowadzic wiecej notatek!", "ERROR", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 Date now = new Date();
                 String note = JOptionPane.showInputDialog("Nowa notatka:");
-                notes.put(now, note);
+                comboBox1.getNotes().put(now, note);
                 updateGUI();
             }
         });
@@ -49,9 +47,39 @@ public class Notes extends JPanel implements Serializable {
             public void actionPerformed(ActionEvent e) {
                 Date date = (Date) comboBox1.getSelectedItem();
                 try {
-                    textArea1.setText(notes.get(date));
+                    textArea1.setText(comboBox1.getNotes().get(date));
                 } catch (NullPointerException e1) {
                     textArea1.setText("");
+                }
+            }
+        });
+        usuńButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date date = (Date) comboBox1.getSelectedItem();
+                comboBox1.getNotes().remove(date);
+                updateGUI();
+            }
+        });
+
+        comboBox1.addVetoableChangeListener(new VetoableChangeListener() {
+            @Override
+            public void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException {
+                int v = ((Integer) evt.getNewValue()).intValue();
+                if (v < 10)
+                    throw new PropertyVetoException("number too small",
+                            evt);
+            }
+        });
+        textArea1.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                String name = evt.getPropertyName();
+                if (name.equals("customPreferredWidth")) {
+                    int width = ((Integer) evt.getNewValue()).intValue();
+                    textArea1.setPreferredSize(new Dimension(width, textArea1.getHeight()));
+                    labelTitle.setPreferredSize(new Dimension(width, labelTitle.getHeight()));
+                    comboBox1.setPreferredSize(new Dimension(width, comboBox1.getHeight()));
                 }
             }
         });
@@ -59,7 +87,7 @@ public class Notes extends JPanel implements Serializable {
 
     private void updateGUI() {
         comboBox1.removeAllItems();
-        for (Date date : notes.keySet()) {
+        for (Date date : comboBox1.getNotes().keySet()) {
             comboBox1.addItem(date);
         }
     }
@@ -72,17 +100,10 @@ public class Notes extends JPanel implements Serializable {
         this.title = title;
     }
 
-    public int getMaxNumberOfNotes() {
-        return maxNumberOfNotes;
-    }
-
-    public void setMaxNumberOfNotes(int maxNumberOfNotes) {
-        this.maxNumberOfNotes = maxNumberOfNotes;
-    }
-
-
     private void createUIComponents() {
         panel1 = this;
+        comboBox1 = new ListOfNotes();
+        textArea1 = new TextField();
     }
 
     /**
@@ -100,11 +121,11 @@ public class Notes extends JPanel implements Serializable {
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.SOUTH;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel1.add(dodajButton, gbc);
-        comboBox1 = new JComboBox();
         comboBox1.setMinimumSize(new Dimension(300, 26));
         comboBox1.setPreferredSize(new Dimension(300, 26));
         gbc = new GridBagConstraints();
@@ -114,29 +135,17 @@ public class Notes extends JPanel implements Serializable {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel1.add(comboBox1, gbc);
-        labelTitle = new JLabel();
-        labelTitle.setFont(new Font(labelTitle.getFont().getName(), labelTitle.getFont().getStyle(), 48));
-        labelTitle.setMaximumSize(new Dimension(300, 64));
-        labelTitle.setMinimumSize(new Dimension(300, 64));
-        labelTitle.setPreferredSize(new Dimension(300, 64));
-        labelTitle.setText("Notatki");
-        gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.weightx = 1.0;
-        gbc.anchor = GridBagConstraints.WEST;
-        panel1.add(labelTitle, gbc);
         final JScrollPane scrollPane1 = new JScrollPane();
         scrollPane1.setEnabled(true);
         scrollPane1.setMinimumSize(new Dimension(300, 19));
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 5;
+        gbc.gridheight = 5;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         panel1.add(scrollPane1, gbc);
-        textArea1 = new JTextArea();
         textArea1.setEnabled(true);
         textArea1.setMinimumSize(new Dimension(0, 100));
         textArea1.setPreferredSize(new Dimension(0, 100));
@@ -144,7 +153,7 @@ public class Notes extends JPanel implements Serializable {
         final JPanel spacer1 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
-        gbc.gridy = 6;
+        gbc.gridy = 10;
         gbc.fill = GridBagConstraints.VERTICAL;
         panel1.add(spacer1, gbc);
         final JPanel spacer2 = new JPanel();
@@ -157,6 +166,7 @@ public class Notes extends JPanel implements Serializable {
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 5;
+        gbc.gridheight = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel1.add(spacer3, gbc);
         final JPanel spacer4 = new JPanel();
@@ -169,6 +179,7 @@ public class Notes extends JPanel implements Serializable {
         gbc = new GridBagConstraints();
         gbc.gridx = 4;
         gbc.gridy = 5;
+        gbc.gridheight = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel1.add(spacer5, gbc);
         final JPanel spacer6 = new JPanel();
@@ -177,6 +188,37 @@ public class Notes extends JPanel implements Serializable {
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.VERTICAL;
         panel1.add(spacer6, gbc);
+        usuńButton = new JButton();
+        usuńButton.setText("Usuń");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 8;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel1.add(usuńButton, gbc);
+        final JPanel spacer7 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 9;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        panel1.add(spacer7, gbc);
+        final JPanel spacer8 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 7;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        panel1.add(spacer8, gbc);
+        labelTitle = new JLabel();
+        labelTitle.setFont(new Font(labelTitle.getFont().getName(), labelTitle.getFont().getStyle(), 48));
+        labelTitle.setMaximumSize(new Dimension(300, 64));
+        labelTitle.setMinimumSize(new Dimension(300, 64));
+        labelTitle.setPreferredSize(new Dimension(300, 64));
+        labelTitle.setText("Notatki");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        panel1.add(labelTitle, gbc);
     }
 
     /**
