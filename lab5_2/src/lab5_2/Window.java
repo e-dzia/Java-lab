@@ -6,7 +6,7 @@ public class Window {
     private JPanel panel1;
 
     public static void createAndShowGUI() {
-        JFrame frame = new JFrame("JavaBeans");
+        JFrame frame = new JFrame("JavaBeans-2");
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
