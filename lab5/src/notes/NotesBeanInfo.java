@@ -10,10 +10,10 @@ public class NotesBeanInfo extends SimpleBeanInfo {
     public NotesBeanInfo(){
         try {
             propertyDescriptors = new PropertyDescriptor[]{
-                    new PropertyDescriptor("title", notes.Notes.class, "getTitle", "setTitle"),
                     new PropertyDescriptor("sizeOfText", notes.Notes.class, "getSizeOfText","setSizeOfText"),
+                    new PropertyDescriptor("title", notes.Notes.class, "getTitle", "setTitle"),
                     new PropertyDescriptor("maxNumberOfNotes", notes.Notes.class, "getMaxNumberOfNotes","setMaxNumberOfNotes"),
-            };
+                    };
         } catch (IntrospectionException e) {
             e.printStackTrace();
         }

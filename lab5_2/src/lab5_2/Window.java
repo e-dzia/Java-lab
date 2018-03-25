@@ -6,10 +6,8 @@ import javax.swing.*;
 
 public class Window {
     private JPanel panel1;
-    private Notes notes;
 
     Window(){
-        notes.setSizeOfText(10);
     }
 
     public static void createAndShowGUI() {

@@ -83,9 +83,9 @@ public class Notes extends JPanel implements Serializable {
         this.addVetoableChangeListener(new VetoableChangeListener() {
             @Override
             public void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException {
-                int v = ((Integer) evt.getNewValue()).intValue();
+                int v = (Integer) evt.getNewValue();
                 if (v < 10)
-                    throw new PropertyVetoException("number too small",
+                    throw new PropertyVetoException("This number should be bigger than or equal to 10.",
                             evt);
             }
         });
@@ -102,10 +102,10 @@ public class Notes extends JPanel implements Serializable {
                     if (sizeOfText >= 10) {
                         textArea1.setForeground(new Color(255, 0, 0));
                     }
-                    if (sizeOfText >= 50) {
+                    if (sizeOfText >= 20) {
                         textArea1.setForeground(new Color(0, 0, 255));
                     }
-                    if (sizeOfText >= 70) {
+                    if (sizeOfText >= 30) {
                         textArea1.setForeground(new Color(0, 255, 0));
                     }
                   /*  textArea1.setPreferredSize(new Dimension(0, (textArea1.getLineCount() + 1) * sizeOfText + 50));
