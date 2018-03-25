@@ -1,9 +1,16 @@
 package lab5_2;
 
+import notes.Notes;
+
 import javax.swing.*;
 
 public class Window {
     private JPanel panel1;
+    private Notes notes;
+
+    Window(){
+        notes.setSizeOfText(10);
+    }
 
     public static void createAndShowGUI() {
         JFrame frame = new JFrame("JavaBeans-2");

@@ -25,16 +25,17 @@
         <properties>
           <enabled value="true"/>
           <minimumSize width="300" height="19"/>
+          <verticalScrollBarPolicy value="22"/>
         </properties>
         <border type="none"/>
         <children>
           <component id="57dc6" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
             <constraints/>
             <properties>
+              <editable value="false"/>
               <enabled value="true"/>
               <lineWrap value="true"/>
-              <minimumSize width="0" height="100"/>
-              <preferredSize width="0" height="100"/>
+              <preferredSize width="300" height="100"/>
               <wrapStyleWord value="true"/>
             </properties>
           </component>

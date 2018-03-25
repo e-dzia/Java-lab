@@ -24,9 +24,8 @@ public class Notes extends JPanel implements Serializable {
     private Map<Date, String> notes = new TreeMap<>();
 
     private String title = "Notes"; //prosta
-    private int sizeOfText = 20; //wiazana - szerokość muszą zmieniać wszystkie elementy po lewej
+    private int sizeOfText = 15; //wiazana - jak zmienia sie rozmiar tekstu, to zmienia sie tez kolor
     private int maxNumberOfNotes = 20; //ograniczona - jak ktoś da mniej niż 10 to veto
-
 
     public Notes() {
         $$$setupUI$$$();
@@ -34,12 +33,17 @@ public class Notes extends JPanel implements Serializable {
         textArea1.setEditable(false);
         labelTitle.setText(title);
 
+        scrollPane1.revalidate();
+
         notes.put(new Date(90, 10, 31), "Najstarsza notatka.");
         notes.put(new Date(96, 2, 24), "Stara notatka.");
         notes.put(new Date(106, 2, 24), "Nowsza notatka.");
 
+        sizeOfText = 15;
         Font oldFont = textArea1.getFont();
         textArea1.setFont(new Font(oldFont.getFontName(), oldFont.getStyle(), sizeOfText));
+        textArea1.setLineWrap(true);
+        textArea1.setWrapStyleWord(true);
 
         updateGUI();
 
@@ -85,7 +89,7 @@ public class Notes extends JPanel implements Serializable {
                             evt);
             }
         });
-      /*  this.addPropertyChangeListener(new PropertyChangeListener() {
+        this.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 String name = evt.getPropertyName();
@@ -93,9 +97,24 @@ public class Notes extends JPanel implements Serializable {
                     int sizeOfText = (Integer) evt.getNewValue();
                     Font oldFont = textArea1.getFont();
                     textArea1.setFont(new Font(oldFont.getFontName(), oldFont.getStyle(), sizeOfText));
+                    textArea1.setLineWrap(true);
+
+                    if (sizeOfText >= 10) {
+                        textArea1.setForeground(new Color(255, 0, 0));
+                    }
+                    if (sizeOfText >= 50) {
+                        textArea1.setForeground(new Color(0, 0, 255));
+                    }
+                    if (sizeOfText >= 70) {
+                        textArea1.setForeground(new Color(0, 255, 0));
+                    }
+                  /*  textArea1.setPreferredSize(new Dimension(0, (textArea1.getLineCount() + 1) * sizeOfText + 50));
+                    System.out.println(textArea1.getLineCount() * sizeOfText + 50);
+                    scrollPane1.setPreferredSize(textArea1.getPreferredSize());
+                    scrollPane1.revalidate();*/
                 }
             }
-        });*/
+        });
     }
 
     public String getTitle() {
@@ -163,6 +182,7 @@ public class Notes extends JPanel implements Serializable {
         scrollPane1 = new JScrollPane();
         scrollPane1.setEnabled(true);
         scrollPane1.setMinimumSize(new Dimension(300, 19));
+        scrollPane1.setVerticalScrollBarPolicy(22);
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 5;
@@ -172,10 +192,10 @@ public class Notes extends JPanel implements Serializable {
         gbc.fill = GridBagConstraints.BOTH;
         panel1.add(scrollPane1, gbc);
         textArea1 = new JTextArea();
+        textArea1.setEditable(false);
         textArea1.setEnabled(true);
         textArea1.setLineWrap(true);
-        textArea1.setMinimumSize(new Dimension(0, 100));
-        textArea1.setPreferredSize(new Dimension(0, 100));
+        textArea1.setPreferredSize(new Dimension(300, 100));
         textArea1.setWrapStyleWord(true);
         scrollPane1.setViewportView(textArea1);
         final JPanel spacer1 = new JPanel();
@@ -266,4 +286,3 @@ public class Notes extends JPanel implements Serializable {
         return panel1;
     }
 }
-
