@@ -108,10 +108,7 @@ public class Notes extends JPanel implements Serializable {
                     if (sizeOfText >= 30) {
                         textArea1.setForeground(new Color(0, 255, 0));
                     }
-                  /*  textArea1.setPreferredSize(new Dimension(0, (textArea1.getLineCount() + 1) * sizeOfText + 50));
-                    System.out.println(textArea1.getLineCount() * sizeOfText + 50);
-                    scrollPane1.setPreferredSize(textArea1.getPreferredSize());
-                    scrollPane1.revalidate();*/
+
                 }
             }
         });
