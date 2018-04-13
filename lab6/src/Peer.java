@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -45,7 +43,7 @@ public class Peer implements PeerInterface {
             out.flush();
             out.close();
 
-            System.out.println("File accepted");
+            System.out.println("File accepted, length: " + data.length);
 
             filesParts.put(filename,new Integer(part));
 
@@ -56,10 +54,21 @@ public class Peer implements PeerInterface {
     }
 
     public byte[] getFileChunk(String filename){
+        File file = new File(".\\Peer"+this.getId()+"-parts\\"+filename);
+        byte[] data;
+        InputStream in;
+        try {
+            in = new FileInputStream(file);
+            data = new byte[(int) file.length()];
+            in.read(data);
 
-        byte[] data = new byte[0];
+            System.out.println("Peer " + this.getId() + ", length: " + data.length);
 
-        return data;
+            return data;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public int getId() {
@@ -68,7 +77,6 @@ public class Peer implements PeerInterface {
     public void setId(int id) {
         this.id = id;
     }
-
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {

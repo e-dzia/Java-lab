@@ -1,11 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Vector;
 
 
@@ -18,6 +14,7 @@ public class ServerPanel extends JPanel{
     Server server = new Server();
 
     Vector<Integer> peerIDs = new Vector<>();
+    Vector<String> filesParts = new Vector<>();
 
     public ServerPanel() {
         odswiezButton.addActionListener(new ActionListener() {
@@ -38,7 +35,17 @@ public class ServerPanel extends JPanel{
             peerIDs.addElement(peer.getId());
         }
         peersList.setListData(peerIDs);
-        filesList.setListData(server.files);
+
+        filesParts.clear();
+        for (Vector<Object> vector : server.files){
+            String fileInfo = "";
+            for (Object obj: vector){
+                fileInfo += obj;
+                fileInfo += " ";
+            }
+            filesParts.add(fileInfo);
+        }
+        filesList.setListData(filesParts);
     }
 
     private void createUIComponents() {
