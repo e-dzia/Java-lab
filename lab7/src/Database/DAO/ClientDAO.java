@@ -2,10 +2,7 @@ package Database.DAO;
 
 import Database.Entities.Client;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +10,7 @@ public class ClientDAO {
     private DbConnection dbConnection;
 
     public ClientDAO() {
-        try {
-            this.dbConnection = new DbConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        this.dbConnection = new DbConnection();
     }
 
     public ClientDAO(DbConnection dbConnection) {
@@ -48,6 +41,8 @@ public class ClientDAO {
         String statement = "INSERT INTO clients (id_client, first_name, last_name, email, identity_number, " +
                 "phone_number) VALUES (?, ?, ?, ?, ?, ?)";
 
+        entity.setId_client(getFreeId());
+
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
         preparedStatement.setInt(1, entity.getId_client());
         preparedStatement.setString(2, entity.getFirst_name());
@@ -58,20 +53,25 @@ public class ClientDAO {
 
         preparedStatement.execute();
 
-        ResultSet resultSet = preparedStatement.getGeneratedKeys();
-        if (resultSet.next())
-            entity.setId_client(resultSet.getInt(1));
-        else
-            entity = null;
-
         preparedStatement.close();
         return entity;
     }
 
+    private int getFreeId() throws SQLException {
+        String statement = "SELECT MAX(id_client) from clients";
+
+        PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.first();
+        int maxID = resultSet.getInt(1);
+        return maxID+1;
+    }
+
 
     public Boolean updateEntity(Client entity) throws SQLException {
-        String statement = "UPDATE clients SET 'first_name'=?, " +
-                "'last_name'=?, 'email'=?, 'identity_number'=?, 'phone_number'=? WHERE 'id_client'=?";
+        String statement = "UPDATE clients SET first_name=?, " +
+                "last_name=?, email=?, identity_number=?, phone_number=? WHERE id_client=?";
 
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
         preparedStatement.setString(1, entity.getFirst_name());

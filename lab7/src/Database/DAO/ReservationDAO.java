@@ -4,6 +4,7 @@ package Database.DAO;
 import Database.Entities.Reservation;
 import com.sun.org.apache.regexp.internal.RE;
 
+import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,11 +16,7 @@ public class ReservationDAO {
     private DbConnection dbConnection;
 
     public ReservationDAO() {
-        try {
-            this.dbConnection = new DbConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        this.dbConnection = new DbConnection();
     }
 
     public ReservationDAO(DbConnection dbConnection) {
@@ -39,9 +36,7 @@ public class ReservationDAO {
                 resultSet.getDate("departure"),
                 resultSet.getInt("id_client"),
                 resultSet.getInt("id_room"),
-                resultSet.getInt("payment"),
-                resultSet.getInt("id_employee_create"),
-                resultSet.getInt("id_employee_modify")
+                resultSet.getInt("payment")
             ));
 
         preparedStatement.close();
@@ -50,7 +45,9 @@ public class ReservationDAO {
 
     public Reservation saveEntity(Reservation entity) throws SQLException {
         String statement = "INSERT INTO reservations (id_reservation, arrival, departure, payment, id_client, " +
-                "id_room, id_employee_create, id_employee_modify) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                "id_room) VALUES (?, ?, ?, ?, ?, ?)";
+
+        entity.setId_reservation(getFreeId());
 
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
         preparedStatement.setInt(1, entity.getId_reservation());
@@ -59,16 +56,8 @@ public class ReservationDAO {
         preparedStatement.setInt(4, entity.getPayment());
         preparedStatement.setInt(5, entity.getId_client());
         preparedStatement.setInt(6, entity.getId_room());
-        preparedStatement.setInt(7, entity.getId_employee_create());
-        preparedStatement.setInt(8, entity.getId_employee_modify());
 
         preparedStatement.execute();
-
-        ResultSet resultSet = preparedStatement.getGeneratedKeys();
-        if (resultSet.next())
-            entity.setId_reservation(resultSet.getInt(1));
-        else
-            entity = null;
 
         preparedStatement.close();
         return entity;
@@ -76,9 +65,8 @@ public class ReservationDAO {
 
 
     public Boolean updateEntity(Reservation entity) throws SQLException {
-        String statement = "UPDATE reservations SET 'arrival'=?, " +
-                "'departure'=?, 'payment'=?, 'id_client'=?, 'id_room'=?, 'id_employee_create'=?, " +
-                "'id_employee_modify'=? WHERE 'id_reservation'=?";
+        String statement = "UPDATE reservations SET arrival=?, " +
+                "departure=?, payment=?, id_client=?, id_room=? WHERE id_reservation=?";
 
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
         preparedStatement.setDate(1, (java.sql.Date) entity.getArrival());
@@ -86,10 +74,8 @@ public class ReservationDAO {
         preparedStatement.setInt(3, entity.getPayment());
         preparedStatement.setInt(4, entity.getId_client());
         preparedStatement.setInt(5, entity.getId_room());
-        preparedStatement.setInt(6, entity.getId_employee_create());
-        preparedStatement.setInt(7, entity.getId_employee_modify());
 
-        preparedStatement.setInt(8, entity.getId_reservation());
+        preparedStatement.setInt(6, entity.getId_reservation());
 
         preparedStatement.executeUpdate();
         preparedStatement.close();
@@ -97,7 +83,7 @@ public class ReservationDAO {
     }
 
     public Reservation getEntityById(int id) throws SQLException {
-        String statement = "SELECT * FROM reservations WHERE id_reservationt=?";
+        String statement = "SELECT * FROM reservations WHERE id_reservation=?";
 
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
         preparedStatement.setInt(1, id);
@@ -109,9 +95,7 @@ public class ReservationDAO {
                 resultSet.getDate("departure"),
                 resultSet.getInt("id_client"),
                 resultSet.getInt("id_room"),
-                resultSet.getInt("payment"),
-                resultSet.getInt("id_employee_create"),
-                resultSet.getInt("id_employee_modify"));
+                resultSet.getInt("payment"));
 
         preparedStatement.close();
         return reservation;
@@ -126,5 +110,16 @@ public class ReservationDAO {
         Boolean methodSucceeded = preparedStatement.executeUpdate() > 0;
         preparedStatement.close();
         return methodSucceeded;
+    }
+
+    private int getFreeId() throws SQLException {
+        String statement = "SELECT MAX(id_reservation) from reservations";
+
+        PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.first();
+        int maxID = resultSet.getInt(1);
+        return maxID+1;
     }
 }

@@ -53,11 +53,9 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room{" +
-                "id_room=" + id_room +
-                ", is_open=" + is_open +
-                ", price=" + price +
-                ", type='" + type + '\'' +
-                '}';
+        return id_room +
+                "\t is_open=" + is_open +
+                "\t price=" + price +
+                "\t type='" + type + '\'';
     }
 }

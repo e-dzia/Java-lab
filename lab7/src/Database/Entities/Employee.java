@@ -1,28 +1,32 @@
 package Database.Entities;
 
+import javax.xml.bind.annotation.*;
 
+@XmlRootElement
+@XmlAccessorType (XmlAccessType.FIELD)
 public class Employee {
     private int id_employee;
     private String first_name;
     private String last_name;
     private String email;
-    private String salt;
     private String hash_code;
 
-    public Employee(String first_name, String last_name, String email, String salt, String hash_code) {
+    public Employee(){
+
+    }
+
+    public Employee(String first_name, String last_name, String email,  String hash_code) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
-        this.salt = salt;
         this.hash_code = hash_code;
     }
 
-    public Employee(int id_employee, String first_name, String last_name, String email, String salt, String hash_code) {
+    public Employee(int id_employee, String first_name, String last_name, String email, String hash_code) {
         this.id_employee = id_employee;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
-        this.salt = salt;
         this.hash_code = hash_code;
     }
 
@@ -58,14 +62,6 @@ public class Employee {
         this.email = email;
     }
 
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
     public String getHash_code() {
         return hash_code;
     }
@@ -76,11 +72,9 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id_employee=" + id_employee +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return id_employee +
+                "\t first_name='" + first_name + '\'' +
+                "\t last_name='" + last_name + '\'' +
+                "\t email='" + email + '\'';
     }
 }

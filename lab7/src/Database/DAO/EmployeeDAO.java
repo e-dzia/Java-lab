@@ -2,6 +2,7 @@ package Database.DAO;
 
 import Database.Entities.Employee;
 
+import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,11 +13,7 @@ public class EmployeeDAO {
     private DbConnection dbConnection;
 
     public EmployeeDAO() {
-        try {
-            this.dbConnection = new DbConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        this.dbConnection = new DbConnection();
     }
 
     public EmployeeDAO(DbConnection dbConnection) {
@@ -35,7 +32,6 @@ public class EmployeeDAO {
                     resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
                     resultSet.getString("email"),
-                    resultSet.getString("salt"),
                     resultSet.getString("hash_code")
             ));
 
@@ -44,24 +40,20 @@ public class EmployeeDAO {
     }
 
     public Employee saveEntity(Employee entity) throws SQLException {
-        String statement = "INSERT INTO employees (id_employee, first_name, last_name, email, salt, " +
-                "hash_code) VALUES (?, ?, ?, ?, ?, ?)";
+        String statement = "INSERT INTO employees (id_employee, first_name, last_name, email, " +
+                "hash_code) VALUES (?, ?, ?, ?, ?)";
+
+        entity.setId_employee(getFreeId());
 
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
         preparedStatement.setInt(1, entity.getId_employee());
         preparedStatement.setString(2, entity.getFirst_name());
         preparedStatement.setString(3, entity.getLast_name());
         preparedStatement.setString(4, entity.getEmail());
-        preparedStatement.setString(5, entity.getSalt());
-        preparedStatement.setString(6, entity.getHash_code());
+        preparedStatement.setString(5, entity.getHash_code());
 
         preparedStatement.execute();
 
-        ResultSet resultSet = preparedStatement.getGeneratedKeys();
-        if (resultSet.next())
-            entity.setId_employee(resultSet.getInt(1));
-        else
-            entity = null;
 
         preparedStatement.close();
         return entity;
@@ -69,17 +61,16 @@ public class EmployeeDAO {
 
 
     public Boolean updateEntity(Employee entity) throws SQLException {
-        String statement = "UPDATE employees SET 'first_name'=?, " +
-                "'last_name'=?, 'email'=?, 'salt'=?, 'hash_code'=? WHERE 'id_employee'=?";
+        String statement = "UPDATE employees SET first_name=?, " +
+                "last_name=?, email=?, hash_code=? WHERE id_employee=?";
 
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
         preparedStatement.setString(1, entity.getFirst_name());
         preparedStatement.setString(2, entity.getLast_name());
         preparedStatement.setString(3, entity.getEmail());
-        preparedStatement.setString(4, entity.getSalt());
-        preparedStatement.setString(5, entity.getHash_code());
+        preparedStatement.setString(4, entity.getHash_code());
 
-        preparedStatement.setInt(6, entity.getId_employee());
+        preparedStatement.setInt(5, entity.getId_employee());
 
         preparedStatement.executeUpdate();
         preparedStatement.close();
@@ -93,14 +84,14 @@ public class EmployeeDAO {
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        resultSet.next();
-        Employee employee = new Employee(resultSet.getInt("id_employee"),
-                resultSet.getString("first_name"),
-                resultSet.getString("last_name"),
-                resultSet.getString("email"),
-                resultSet.getString("salt"),
-                resultSet.getString("hash_code"));
-
+        Employee employee = null;
+        if (resultSet.next()) {
+            employee = new Employee(resultSet.getInt("id_employee"),
+                    resultSet.getString("first_name"),
+                    resultSet.getString("last_name"),
+                    resultSet.getString("email"),
+                    resultSet.getString("hash_code"));
+        }
         preparedStatement.close();
         return employee;
     }
@@ -114,5 +105,26 @@ public class EmployeeDAO {
         Boolean methodSucceeded = preparedStatement.executeUpdate() > 0;
         preparedStatement.close();
         return methodSucceeded;
+    }
+
+    private int getFreeId() throws SQLException {
+        String statement = "SELECT MAX(id_employee) from employees";
+
+        PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.first();
+        int maxID = resultSet.getInt(1);
+        return maxID+1;
+    }
+
+    public void replaceAllEntities(List<Employee> employees) throws SQLException {
+        String statement = "DELETE FROM employees";
+        PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
+        int result = preparedStatement.executeUpdate();
+
+        for (Employee employee : employees){
+            saveEntity(employee);
+        }
     }
 }

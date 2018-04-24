@@ -13,11 +13,8 @@ public class RoomDAO {
     private DbConnection dbConnection;
 
     public RoomDAO() {
-        try {
-            this.dbConnection = new DbConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        this.dbConnection = new DbConnection();
+
     }
 
     public RoomDAO(DbConnection dbConnection) {
@@ -46,6 +43,8 @@ public class RoomDAO {
         String statement = "INSERT INTO rooms (id_room, type, price, is_open" +
                 ") VALUES (?, ?, ?, ?)";
 
+        entity.setId_room(getFreeId());
+
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
         preparedStatement.setInt(1, entity.getId_room());
         preparedStatement.setString(2, entity.getType());
@@ -54,11 +53,6 @@ public class RoomDAO {
 
         preparedStatement.execute();
 
-        ResultSet resultSet = preparedStatement.getGeneratedKeys();
-        if (resultSet.next())
-            entity.setId_room(resultSet.getInt(1));
-        else
-            entity = null;
 
         preparedStatement.close();
         return entity;
@@ -66,8 +60,8 @@ public class RoomDAO {
 
 
     public Boolean updateEntity(Room entity) throws SQLException {
-        String statement = "UPDATE rooms SET 'type'=?, " +
-                "'price'=?, 'is_open'=? WHERE 'id_room'=?";
+        String statement = "UPDATE rooms SET type=?, " +
+                "price=?, is_open=? WHERE id_room=?";
 
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
         preparedStatement.setString(1, entity.getType());
@@ -107,5 +101,16 @@ public class RoomDAO {
         Boolean methodSucceeded = preparedStatement.executeUpdate() > 0;
         preparedStatement.close();
         return methodSucceeded;
+    }
+
+    private int getFreeId() throws SQLException {
+        String statement = "SELECT MAX(id_room) from rooms";
+
+        PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(statement);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.first();
+        int maxID = resultSet.getInt(1);
+        return maxID+1;
     }
 }

@@ -9,28 +9,22 @@ public class Reservation {
     private int id_client;
     private int id_room;
     private int payment;
-    private int id_employee_create;
-    private int id_employee_modify;
 
-    public Reservation(Date arrival, Date departure, int id_client, int id_room, int payment, int id_employee_create, int id_employee_modify) {
+    public Reservation(Date arrival, Date departure, int id_client, int id_room, int payment) {
         this.arrival = arrival;
         this.departure = departure;
         this.id_client = id_client;
         this.id_room = id_room;
         this.payment = payment;
-        this.id_employee_create = id_employee_create;
-        this.id_employee_modify = id_employee_modify;
     }
 
-    public Reservation(int id_reservation, Date arrival, Date departure, int id_client, int id_room, int payment, int id_employee_create, int id_employee_modify) {
+    public Reservation(int id_reservation, Date arrival, Date departure, int id_client, int id_room, int payment) {
         this.id_reservation = id_reservation;
         this.arrival = arrival;
         this.departure = departure;
         this.id_client = id_client;
         this.id_room = id_room;
         this.payment = payment;
-        this.id_employee_create = id_employee_create;
-        this.id_employee_modify = id_employee_modify;
     }
 
     public int getId_reservation() {
@@ -81,33 +75,13 @@ public class Reservation {
         this.payment = payment;
     }
 
-    public int getId_employee_create() {
-        return id_employee_create;
-    }
-
-    public void setId_employee_create(int id_employee_create) {
-        this.id_employee_create = id_employee_create;
-    }
-
-    public int getId_employee_modify() {
-        return id_employee_modify;
-    }
-
-    public void setId_employee_modify(int id_employee_modify) {
-        this.id_employee_modify = id_employee_modify;
-    }
-
     @Override
     public String toString() {
-        return "Reservation{" +
-                "id_reservation=" + id_reservation +
-                ", arrival=" + arrival +
-                ", departure=" + departure +
-                ", id_client=" + id_client +
-                ", id_room=" + id_room +
-                ", payment=" + payment +
-                ", id_employee_create=" + id_employee_create +
-                ", id_employee_modify=" + id_employee_modify +
-                '}';
+        return id_reservation +
+                "\t arrival=" + arrival +
+                "\t departure=" + departure +
+                "\t id_client=" + id_client +
+                "\t id_room=" + id_room +
+                "\t payment=" + payment;
     }
 }
