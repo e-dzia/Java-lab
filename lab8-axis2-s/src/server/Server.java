@@ -140,8 +140,23 @@ public class Server {
         }
         char number = name.charAt(1);
         if (number == '1'){
-            
-            //wrzuć też A1, B1, C1
+            Node nodeA = findNode("A1");
+            Node nodeB = findNode("B1");
+            Node nodeC = findNode("C1");
+            switch (name.charAt(0)){
+                case 'A':
+                    nodes.add(nodeB);
+                    nodes.add(nodeC);
+                    break;
+                case 'B':
+                    nodes.add(nodeA);
+                    nodes.add(nodeC);
+                    break;
+                case 'C':
+                    nodes.add(nodeB);
+                    nodes.add(nodeA);
+                    break;
+            }
         }
         
         StringBuilder newname = new StringBuilder();
