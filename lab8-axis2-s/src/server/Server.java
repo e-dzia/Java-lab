@@ -12,10 +12,11 @@ public class Server {
     
     public boolean addNode(String name) {
         name = name.trim();
+        name = name.toUpperCase();
         Node node = findNode(name);
         
         synchronized (nodeList) {
-            if (node != null || name.equals("Broadcast") || name.startsWith("Layer broadcast:") || name.length() < 1){
+            if (node != null || name.equals("BROADCAST") || name.startsWith("LAYER BROADCAST:") || name.length() < 1){
                 return false;
             } else {
                 Node n = new Node();
@@ -33,7 +34,7 @@ public class Server {
                 for (Node node : nodeList) {
                     Message message = new Message();
                     message.sender = sender;
-                    message.receiver = "Broadcast";
+                    message.receiver = "BROADCAST";
                     message.message = messageText.trim();
                     node.messages.add(message);
                 }
@@ -53,7 +54,7 @@ public class Server {
                     if (node.name.startsWith(layer)){
                         Message message = new Message();
                         message.sender = sender;
-                        message.receiver = "Layer broadcast:"+layer;
+                        message.receiver = "LAYER BROADCAST:"+layer;
                         message.message = messageText.trim();
                         node.messages.add(message);
                         found = true;
@@ -129,15 +130,35 @@ public class Server {
         return nodes;
     }
     
-    //TODO: znalezn Node, do ktorych mozna wyslac
+    //TODO: znalezc Node, do ktorych mozna wyslac
     private ArrayList<Node> getNextNodes(String name){
         ArrayList<Node> nodes = new ArrayList <>();
         name = name.trim();
+        name = name.toUpperCase();
         if (name.length() != 2){
             return null;
         }
         char number = name.charAt(1);
+        if (number == '1'){
+            
+            //wrzuć też A1, B1, C1
+        }
         
+        StringBuilder newname = new StringBuilder();
+        newname.append(name.charAt(0));
+        newname.append((number+1-'0'));
+        Node nodeSameLayer = findNode(newname.toString());
+        
+        if(nodeSameLayer == null){
+            newname = new StringBuilder();
+            newname.append(name.charAt(0));
+            newname.append('0');
+            nodeSameLayer = findNode(newname.toString());
+            nodes.add(nodeSameLayer);
+        }
+        else {
+            nodes.add(nodeSameLayer);
+        }
         
         return nodes;
     }

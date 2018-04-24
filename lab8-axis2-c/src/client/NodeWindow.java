@@ -29,6 +29,18 @@ public class NodeWindow extends JFrame {
     NodeClient nodeClient;
 
     public NodeWindow() {
+        String name = "B2";
+        char number = name.charAt(1);
+        StringBuilder newname = new StringBuilder();
+        newname.append(name.charAt(0));
+        newname.append((number+1-'0'));
+        System.out.println(newname);
+        newname = new StringBuilder();
+        newname.append(name.charAt(0));
+        newname.append('0');
+        System.out.println(newname.toString());
+        
+        
         tabbedPane1.setVisible(false);
         receivedText.setEditable(false);
 
@@ -59,7 +71,7 @@ public class NodeWindow extends JFrame {
             }
         });
         OKButton.addActionListener(new ActionListener() {
-            
+            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     nodeClient = new NodeClient(nameTextField.getText());
