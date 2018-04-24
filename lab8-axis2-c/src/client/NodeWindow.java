@@ -27,18 +27,60 @@ public class NodeWindow extends JFrame {
             "Unicast:C1","Unicast:C2","Unicast:C3", "Unicast:C4", "Unicast:C5"};
 
     NodeClient nodeClient;
-
-    public NodeWindow() {
-        String name = "B2";
+    
+    private void test(){
+        String name = "A1";
+        ArrayList<String> nodes = new ArrayList <>();
+        name = name.trim();
+        name = name.toUpperCase();
+        if (name.length() != 2){
+            return;
+        }
         char number = name.charAt(1);
+        if (number == '1'){
+            String nodeA = "A1";
+            String nodeB = "B1";
+            String nodeC = "C1";
+            switch (name.charAt(0)){
+                case 'A':
+                    nodes.add(nodeB);
+                    nodes.add(nodeC);
+                    break;
+                case 'B':
+                    nodes.add(nodeA);
+                    nodes.add(nodeC);
+                    break;
+                case 'C':
+                    nodes.add(nodeB);
+                    nodes.add(nodeA);
+                    break;
+            }
+        }
+    
         StringBuilder newname = new StringBuilder();
         newname.append(name.charAt(0));
         newname.append((number+1-'0'));
-        System.out.println(newname);
-        newname = new StringBuilder();
-        newname.append(name.charAt(0));
-        newname.append('0');
-        System.out.println(newname.toString());
+        String nodeSameLayer = newname.toString();
+    
+        if(nodeSameLayer == null){
+            newname = new StringBuilder();
+            newname.append(name.charAt(0));
+            newname.append('0');
+            nodeSameLayer = newname.toString();
+            nodes.add(nodeSameLayer);
+        }
+        else {
+            nodes.add(nodeSameLayer);
+        }
+    
+        System.out.println("################");
+        for (String s: nodes){
+            System.out.println(s);
+        }
+    }
+
+    public NodeWindow() {
+        test();
         
         
         tabbedPane1.setVisible(false);
