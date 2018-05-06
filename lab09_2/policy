@@ -1,0 +1,9 @@
+/* AUTOMATICALLY GENERATED ON Sun May 06 19:38:41 CEST 2018*/
+/* DO NOT EDIT */
+
+keystore "file:/d:/PWr/S6/Java lab/lab09/out/artifacts/lab09/keystore.jks", "jks";
+
+grant signedBy "mykey",  codeBase "file:d:/PWr/S6/Java lab/lab09/out/artifacts/lab09/" {
+  permission java.io.FilePermission "*", "read, write";
+};
+
