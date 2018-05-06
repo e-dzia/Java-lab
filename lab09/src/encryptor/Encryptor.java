@@ -1,3 +1,5 @@
+package encryptor;
+
 import javax.crypto.Cipher;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,7 +14,7 @@ public class Encryptor {
     public static void main(String[] args) {
         try {
             KeyPair keyPair = getKeyPairFromKeyStore("keystore.jks", "mykey", "secret", "secret");
-            encrypt("1.txt", keyPair.getPublic());
+           // encrypt("1.txt", keyPair.getPublic());
             decrypt("1.txt-encrypted.txt", keyPair.getPrivate());
         } catch (Exception e) {
             e.printStackTrace();

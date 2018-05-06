@@ -1,0 +1,5 @@
+http://niels.nu/blog/2016/java-rsa.html
+keytool -genkeypair -alias mykey -storepass secret -keypass secret -keyalg RSA -keystore keystore.jks
+
+https://docs.oracle.com/javase/tutorial/deployment/jar/signing.html
+jarsigner -keystore keystore.jks -signedjar SignedLab09.jar lab09.jar mykey
