@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-
-Name: notes.Notes.class
-Java-Bean: True
