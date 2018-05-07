@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="SignedLab09">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../lab09/out/artifacts/lab09/SignedLab09.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lab09/out/artifacts/lab09_signed/SignedLab09.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

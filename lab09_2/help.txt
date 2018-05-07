@@ -1,0 +1,7 @@
+keytool -genkeypair -alias otherkey -storepass s3cr3t -keypass s3cr3t -keyalg RSA -keystore otherkeystore.jks
+
+keytool -import -alias mykey -file publicKey.cer -keystore importedkeystore.jks
+(hasło: secret)
+
+policytool:
+CodeBase: file:d:/PWr/S6/Java lab/lab09/out/artifacts/lab09/
