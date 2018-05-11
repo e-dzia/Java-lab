@@ -1,10 +1,16 @@
-Lab 10. Wdro¿enie aplikacji Java z wykorzystaniem JavaWS.
+Lab 10. Wdroï¿½enie aplikacji Java z wykorzystaniem JavaWS.
 
 
-Wymagania: do realizacji zadania potrzebna bêdzie wiedza o JavaWS (Java Web Start) oraz Java Network Launching Protocol (JNLP).
+Wymagania: do realizacji zadania potrzebna bï¿½dzie wiedza o JavaWS (Java Web Start) oraz Java Network Launching Protocol (JNLP).
 
 
-Nale¿y napisaæ program, który mo¿na bêdzie uruchomiæ poprzez JavaWS. Podczas realizacji zadania nale¿y wygenerowaæ plik JNLP oraz przetestowaæ jego za³adowanie na lokalnej maszynie. Podczas realizacji æwiczenia mo¿na skorzystaæ z narzêdzi typu serwer Apache Tomcat (na nim opublikowane powinny byæ plik JNLP oraz jar z aplikacj¹).
+Naleï¿½y napisaï¿½ program, ktï¿½ry moï¿½na bï¿½dzie uruchomiï¿½ poprzez JavaWS. Podczas realizacji zadania naleï¿½y wygenerowaï¿½ plik JNLP oraz przetestowaï¿½ jego zaï¿½adowanie na lokalnej maszynie. Podczas realizacji ï¿½wiczenia moï¿½na skorzystaï¿½ z narzï¿½dzi typu serwer Apache Tomcat (na nim opublikowane powinny byï¿½ plik JNLP oraz jar z aplikacjï¿½).
 
 
-Aplikacja powinna byæ okienkowa. Tematyka samej aplikacji jest dowolna (mo¿na np. wykorzystaæ program z laboratorium 2), nale¿y jednak zwróciæ uwagê na ograniczenia wynikaj¹ce z mechanizmów JavaWS/JNPL.
+Aplikacja powinna byï¿½ okienkowa. Tematyka samej aplikacji jest dowolna (moï¿½na np. wykorzystaï¿½ program z laboratorium 2), naleï¿½y jednak zwrï¿½ciï¿½ uwagï¿½ na ograniczenia wynikajï¿½ce z mechanizmï¿½w JavaWS/JNPL.
+
+help:
+D:\PWr\S6\Java lab\lab10\out\artifacts\lab10_jar>jarsigner -keystore keystore.jks -signedjar ..\..\..\SignedLab10.jar lab10.jar mykey
+
+https://www.mkyong.com/java/java-web-start-jnlp-tutorial-unofficial-guide/
+http://localhost:8080/webstart.jnlp

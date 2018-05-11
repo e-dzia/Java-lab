@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase=
+        "http://127.0.0.1:8080"
+      href="webstart.jnlp">
+    <information>
+        <title>Books</title>
+        <vendor>Edyta Rogula</vendor>
+        <offline-allowed />
+    </information>
+    <resources>
+        <!-- Application Resources -->
+        <j2se version="1.7+"
+              href="http://java.sun.com/products/autodl/j2se"/>
+        <jar href="SignedLab10.jar"
+             main="true" />
+
+    </resources>
+    <application-desc
+            name="Books"
+            main-class="app.Main" />
+    <security><all-permissions/></security>
+    <update check="background"/>
+</jnlp>

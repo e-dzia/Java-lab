@@ -1,0 +1,9 @@
+/* AUTOMATICALLY GENERATED ON Fri May 11 14:41:21 CEST 2018*/
+/* DO NOT EDIT */
+
+keystore "file:d:/PWr/S6/Java lab/lab10/out/artifacts/lab10_jar/keystore.jks", "jks";
+
+grant signedBy "mykey",  codeBase "http://localhost:8080/" {
+  permission java.io.FilePermission "<<ALL FILES>>", "read, write";
+};
+

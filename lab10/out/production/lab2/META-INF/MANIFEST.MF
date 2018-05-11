@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: app.Main
+Permissions: all-permissions
+Codebase: http://127.0.0.1:8080
+Application-Name: Books
