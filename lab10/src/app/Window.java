@@ -66,9 +66,9 @@ public class Window {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Window window = new Window();
         
-        ClassLoader cl = window.getClass().getClassLoader();
+      /*  ClassLoader cl = window.getClass().getClassLoader();
         ImageIcon img = new ImageIcon(cl.getResource("resources/book.png"));
-        frame.setIconImage(img.getImage());
+        frame.setIconImage(img.getImage());*/
         
         frame.setContentPane(window.mainContentPanel);
         frame.pack();

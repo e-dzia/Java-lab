@@ -19,5 +19,4 @@
             name="Books"
             main-class="app.Main" />
     <security><all-permissions/></security>
-    <update check="background"/>
 </jnlp>

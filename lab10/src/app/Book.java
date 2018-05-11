@@ -18,6 +18,7 @@ public class Book {
     String title;
     Date publicationDate;
     double price;
+    //Icon cover;
 
     Book(String data) throws ParseException, IOException {
         String[] separateData = data.split(";");
@@ -26,6 +27,7 @@ public class Book {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         publicationDate = dateFormat.parse(separateData[2]);
         price = Double.parseDouble(separateData[3]);
+       // cover = new ImageIcon(folderName + "\\" + separateData[4]);
     }
 
     public Object[] toArray(){
@@ -35,6 +37,7 @@ public class Book {
         array[2] = title;
         array[3] = publicationDate;
         array[4] = price;
+      //  array[5] = cover;
         return array;
     }
 }
