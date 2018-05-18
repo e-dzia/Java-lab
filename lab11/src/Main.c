@@ -36,22 +36,17 @@ JNIEXPORT jboolean JNICALL Java_Main_isPrime(JNIEnv *env, jobject thisObj, jint 
  * Method:    forEachElement
  * Signature: ([FFLjava/lang/String;)[F
  */
- //trzyargumentowa funkcja, która do każdego elementu tablicy array dodaje/odejmuje/itp.
- //wartość val w zależności od wartości parametru op (4 możliwe wartości: "add", "subtract", "multiply", "divide").
-// Funkcja może zmieniać oryginalną tablicę lub zwracać nową (w tym pierwszym przypadku funkcja ma typ zwracany void).
 JNIEXPORT jfloatArray JNICALL Java_Main_forEachElement(JNIEnv *env, jobject thisObj, jfloatArray array, jfloat val, jstring op){
     // Convert the JNI String (jstring) into C-String (char*)
     const char *inCOp = (*env)->GetStringUTFChars(env, op, NULL);
     if (NULL == inCOp) return NULL;
-
-    // Perform its intended operations
-    //printf("In C, the received string is: %s\n", inCOp);
 
     // Convert the incoming JNI jfloatarray to C's jfloat[]
     jfloat *inCArray = (*env)->GetFloatArrayElements(env, array, NULL);
     if (NULL == inCArray) return NULL;
     jsize length = (*env)->GetArrayLength(env, array);
 
+    // New array so the original one remains untouched
     jfloat returnCArray[length];
 
     for (int i = 0; i < length; i++) {
