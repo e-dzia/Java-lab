@@ -1,0 +1,11 @@
+x86_64-w64-mingw32-gcc
+"c:\Program Files\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev0\mingw64\bin\x86_64-w64-mingw32-gcc" -I"%JAVA_HOME%\include" -I"%JAVA_HOME%\include\win32" -shared -o lab11.dll Main.c
+
+Kompilacja javy i stworzenie headera:
+javac -h . Main.java
+
+Kompilacja kodu w C do DLL:
+x86_64-w64-mingw32-gcc -I"%JAVA_HOME%\..\include" -I"%JAVA_HOME%\..\include\win32" -shared -o lab11.dll Main.c
+
+Odpalanie gotowego programu:
+"c:\Program Files\Java\jdk1.8.0_161\bin\java" -Djava.library.path=. Main
