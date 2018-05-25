@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class ComputerPlayer extends Player{
     
-    ComputerPlayer(int min, int max) {
-        super(min, max);
+    ComputerPlayer(int min, int max, int numberOfCards) {
+        super(min, max, numberOfCards);
     }
     
     ComputerPlayer(ArrayList<Integer> otherCards) {

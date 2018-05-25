@@ -2,12 +2,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Player {
-    private static final int numberOfCards = 10;
     private int points = 0;
     ArrayList<Integer> cards = new ArrayList <>();
     ArrayList<Integer> opponentCards = new ArrayList <>();
     
-    Player(int min, int max){
+    Player(int min, int max, int numberOfCards){
         Random random = new Random();
         for (int i = 0; i < numberOfCards; i++){
             cards.add(random.nextInt(max - min + 1) + min);

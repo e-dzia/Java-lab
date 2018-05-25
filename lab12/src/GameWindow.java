@@ -42,6 +42,23 @@ public class GameWindow extends JFrame {
         kolejnaRundaButton.addActionListener(e -> {
             if (game.computerPlayer.cards.size() < 1 || game.humanPlayer.cards.size() < 1) return;
             if (!ready) return;
+            if (game.round == game.numberOfCards-1) {
+                if (game.humanPlayer.getPoints() > game.computerPlayer.getPoints()){
+                    JOptionPane.showMessageDialog(null, "Wygrales!", "HURRA!", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else if (game.humanPlayer.getPoints() == game.computerPlayer.getPoints()) {
+                    JOptionPane.showMessageDialog(null, "Remis", "REMIS", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Przegrales", "SPROBUJ JESZCZE RAZ", JOptionPane.INFORMATION_MESSAGE);
+                }
+                game = new Game(0, 10);
+                updateGUI();
+                cmbCardsPlayer.setEnabled(true);
+                txtCardComputer.setText("");
+                ready = false;
+                return;
+            }
             try {
                 game.nextRound((int) cmbCardsPlayer.getSelectedItem(),
                         Integer.parseInt(txtCardComputer.getText()));

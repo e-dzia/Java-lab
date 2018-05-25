@@ -1,11 +1,12 @@
 
 public class Game {
-    public int round = 0;
+    static final int numberOfCards = 10;
+    int round = 0;
     HumanPlayer humanPlayer;
     ComputerPlayer computerPlayer;
     
     Game(int min, int max){
-        computerPlayer = new ComputerPlayer(min, max);
+        computerPlayer = new ComputerPlayer(min, max, numberOfCards);
         humanPlayer = new HumanPlayer(computerPlayer.cards);
     }
     
