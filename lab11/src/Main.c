@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 #include "Main.h"
 
 /*
@@ -22,7 +23,7 @@ JNIEXPORT jboolean JNICALL Java_Main_isPrime(JNIEnv *env, jobject thisObj, jint 
     jboolean result = JNI_FALSE;
     if (num < 2) return result;
     result = JNI_TRUE;
-    for (jint i = 2; i <= num/2; i++){
+    for (jint i = 2; i <= sqrt(num); i++){
         if (num % i == 0) {
             result = JNI_FALSE;
             return result;

@@ -13,9 +13,12 @@ public class Main {
     public static void main(String[] args) {
         new Main().helloWorld();
         
-        for (int i = 0; i < 20; i++){
+        Scanner in = new Scanner(System.in);
+        int number = in.nextInt();
+        System.out.println(new Main().isPrime(number));
+       /* for (int i = 0; i < 20; i++){
             System.out.println(i + " " + new Main().isPrime(i));
-        }
+        }*/
         
         float[] numbers = {22.1f, 33.2f, 55.3f};
         System.out.println("ADD 5");
@@ -34,7 +37,7 @@ public class Main {
             System.out.println(i + " " + results[i]);
         }
         System.out.println("DIVIDE 5");
-        results = new Main().forEachElement(numbers, 5, "divide");
+        results = new Main().forEachElement(numbers, 0, "divide");
         for (int i = 0; i < results.length; i++) {
             System.out.println(i + " " + results[i]);
         }
