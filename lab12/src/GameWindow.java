@@ -26,60 +26,53 @@ public class GameWindow extends JFrame {
         txtCardComputer.setEditable(false);
         txtPointsComputer.setEditable(false);
         txtPointsPlayer.setEditable(false);
-        kolejnaRundaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (game.computerPlayer.cards.size() < 1 || game.humanPlayer.cards.size() < 1) return;
-                if (!ready) return;
-                try {
-                    game.nextRound((int) cmbCardsPlayer.getSelectedItem(),
-//                            game.computerPlayer.chooseCard());
-                            Integer.parseInt(txtCardComputer.getText()));
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-                updateGUI();
-                if (game.round % 2 != 0){
-                    //najpierw komputer
-                    txtCardComputer.setText(game.computerPlayer.chooseCard() + "");
-                }
-                else {
-                    //najpierw człowiek
-                    txtCardComputer.setText("");
-                }
-                cmbCardsPlayer.setEnabled(true);
-                ready = false;
+        ukryjButton.addActionListener(e -> {
+            if (!computerCardsHidden){
+                computerCardsHidden = true;
+                scrollCardsComputer.setVisible(true);
+                ukryjButton.setText("Ukryj");
+            }
+            else {
+                computerCardsHidden = false;
+                scrollCardsComputer.setVisible(false);
+                ukryjButton.setText("Pokaz");
             }
         });
     
-        ukryjButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!computerCardsHidden){
-                    computerCardsHidden = true;
-                    scrollCardsComputer.setVisible(true);
-                    ukryjButton.setText("Ukryj");
-                }
-                else {
-                    computerCardsHidden = false;
-                    scrollCardsComputer.setVisible(false);
-                    ukryjButton.setText("Pokaz");
-                }
+        kolejnaRundaButton.addActionListener(e -> {
+            if (game.computerPlayer.cards.size() < 1 || game.humanPlayer.cards.size() < 1) return;
+            if (!ready) return;
+            try {
+                game.nextRound((int) cmbCardsPlayer.getSelectedItem(),
+                        Integer.parseInt(txtCardComputer.getText()));
+            } catch (Exception e1) {
+                e1.printStackTrace();
             }
+            if (game.round % 2 != 0){
+                //najpierw komputer
+                txtCardComputer.setText(game.computerPlayer.chooseCard(-1) + "");
+            }
+            else {
+                //najpierw człowiek
+                txtCardComputer.setText("");
+            }
+            cmbCardsPlayer.setEnabled(true);
+            ready = false;
+            updateGUI();
         });
-    
+        
+        gotoweButton.addActionListener(e -> {
+            if (game.computerPlayer.cards.size() < 1 || game.humanPlayer.cards.size() < 1) return;
+            if (ready) return;
+            if (game.round %2 == 0){
+                //najpierw człowiek
+                txtCardComputer.setText(game.computerPlayer.chooseCard((int) cmbCardsPlayer.getSelectedItem()) + "");
+            }
+            cmbCardsPlayer.setEnabled(false);
+            ready = true;
+        });
+        
         updateGUI();
-        gotoweButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (game.round %2 == 0){
-                    //najpierw człowiek
-                    txtCardComputer.setText(game.computerPlayer.chooseCard() + "");
-                }
-                cmbCardsPlayer.setEnabled(false);
-                ready = true;
-            }
-        });
     }
     
     private void updateGUI(){
@@ -98,6 +91,5 @@ public class GameWindow extends JFrame {
         this.setContentPane(panel1);
         this.setVisible(true);
         this.pack();
-    
     }
 }

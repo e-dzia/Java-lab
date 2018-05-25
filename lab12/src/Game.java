@@ -11,9 +11,12 @@ public class Game {
     
     void nextRound(int humanCard, int computerCard) throws Exception {
         if (computerPlayer.cards.size() < 1 || humanPlayer.cards.size() < 1) return;
+        
         round++;
-        computerPlayer.playCard(computerCard);
-        humanPlayer.playCard(humanCard);
+        
+        computerPlayer.playCard(computerCard, humanCard);
+        humanPlayer.playCard(humanCard, computerCard);
+        
         if (computerCard > humanCard){
             computerPlayer.addPoints(2);
         }
@@ -26,5 +29,4 @@ public class Game {
         }
     }
     
-    //TODO: kolejność kładzenia kart - najpierw H, potem C w parzystych i na odwrót w nieparzystych
 }
