@@ -117,7 +117,7 @@ public class GameWindow extends JFrame {
     }
     
     private ArrayList<String> findScript(){
-        File folder = new File("src/scripts/");
+        File folder = new File("src/game_logic.scripts/");
         File[] listOfFiles = folder.listFiles();
         
         String name = "";

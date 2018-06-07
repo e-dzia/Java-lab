@@ -1,3 +1,4 @@
+package game_logic;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -18,7 +19,7 @@ public class ComputerPlayer extends Player{
         super(otherCards);
     }
     
-    int chooseCard(int opponentCard, String strategy){
+    public int chooseCard(int opponentCard, String strategy){
         if (cards.size() < 1) return -1;
         int toReturn = -1;
         
@@ -26,7 +27,7 @@ public class ComputerPlayer extends Player{
         ScriptEngine engine = engineMgr.getEngineByName("JavaScript");
         Invocable invocableEngine = (Invocable) engine;
         
-        InputStream is = this.getClass().getResourceAsStream("/scripts/" + strategy);
+        InputStream is = this.getClass().getResourceAsStream("scripts/" + strategy);
         try {
             Reader reader = new InputStreamReader(is);
             engine.eval(reader);
@@ -39,7 +40,7 @@ public class ComputerPlayer extends Player{
         return toReturn;
     }
     
-    int chooseCard(int opponentCard){
+    /*int chooseCard(int opponentCard){
         if (cards.size() < 1) return -1;
         int toReturn = -1;
         
@@ -47,7 +48,7 @@ public class ComputerPlayer extends Player{
         ScriptEngine engine = engineMgr.getEngineByName("JavaScript");
         Invocable invocableEngine = (Invocable) engine;
         
-        InputStream is = this.getClass().getResourceAsStream("/scripts/" + findScript());
+        InputStream is = this.getClass().getResourceAsStream("scripts/" + findScript());
         try {
             Reader reader = new InputStreamReader(is);
             engine.eval(reader);
@@ -58,10 +59,10 @@ public class ComputerPlayer extends Player{
             e.printStackTrace();
         }
         return toReturn;
-    }
+    }*/
     
     private String findScript(){
-        File folder = new File("src/scripts/");
+        File folder = new File("src/game_logic/scripts/");
         File[] listOfFiles = folder.listFiles();
     
         String name = "";

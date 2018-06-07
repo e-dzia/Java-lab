@@ -38,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/src/Exam.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+              <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Exam#0;class#Exam#0" expanded="false" />
@@ -53,14 +53,13 @@
       <file leaf-file-name="Statistics.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Statistics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+            <state relative-caret-position="451">
+              <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Statistics#0;class#Statistics#0" expanded="false" />
                 <element signature="method#averageNumberOfPointsPerStudent#0;class#Statistics#0" expanded="false" />
                 <element signature="method#histogramOfQuestions#0;class#Statistics#0" expanded="false" />
-                <element signature="method#histogramOfNumberOfPoints#0;class#Statistics#0" expanded="false" />
                 <element signature="method#countStudentPoints#0;class#Statistics#0" expanded="false" />
                 <element signature="method#countAllStudentPoints#0;class#Statistics#0" expanded="false" />
                 <element signature="method#countQuestionPoints#0;class#Statistics#0" expanded="false" />
@@ -153,26 +152,26 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lab1" />
+              <option name="myItemId" value="lab01" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lab1" />
+              <option name="myItemId" value="lab01" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lab1" />
+              <option name="myItemId" value="lab01" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lab1" />
+              <option name="myItemId" value="lab01" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -183,7 +182,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -191,7 +190,7 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lab2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lab01_2" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -682,11 +681,12 @@
       <workItem from="1519320616123" duration="1636000" />
       <workItem from="1519670777140" duration="812000" />
       <workItem from="1519733837714" duration="1396000" />
+      <workItem from="1528288489348" duration="944000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16519000" />
+    <option name="totallyTimeSpent" value="17463000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -715,7 +715,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15300146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15506808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -756,6 +756,48 @@
     <entry file="file://$PROJECT_DIR$/src/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Test#0;class#Test#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Exam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Exam#0;class#Exam#0" expanded="false" />
+            <element signature="method#loadFromFiles#0;class#Exam#0" expanded="false" />
+            <element signature="method#loadKeyAnswers#0;class#Exam#0" expanded="false" />
+            <element signature="method#getFilesFromDirectory#0;class#Exam#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Statistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Statistics#0;class#Statistics#0" expanded="false" />
+            <element signature="method#averageNumberOfPointsPerStudent#0;class#Statistics#0" expanded="false" />
+            <element signature="method#histogramOfQuestions#0;class#Statistics#0" expanded="false" />
+            <element signature="method#countStudentPoints#0;class#Statistics#0" expanded="false" />
+            <element signature="method#countAllStudentPoints#0;class#Statistics#0" expanded="false" />
+            <element signature="method#countQuestionPoints#0;class#Statistics#0" expanded="false" />
+            <element signature="method#countAllQuestionPoints#0;class#Statistics#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
           <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -773,7 +815,6 @@
             <element signature="method#Statistics#0;class#Statistics#0" expanded="false" />
             <element signature="method#averageNumberOfPointsPerStudent#0;class#Statistics#0" expanded="false" />
             <element signature="method#histogramOfQuestions#0;class#Statistics#0" expanded="false" />
-            <element signature="method#histogramOfNumberOfPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countAllStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countQuestionPoints#0;class#Statistics#0" expanded="false" />
@@ -816,7 +857,6 @@
             <element signature="method#Statistics#0;class#Statistics#0" expanded="false" />
             <element signature="method#averageNumberOfPointsPerStudent#0;class#Statistics#0" expanded="false" />
             <element signature="method#histogramOfQuestions#0;class#Statistics#0" expanded="false" />
-            <element signature="method#histogramOfNumberOfPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countAllStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countQuestionPoints#0;class#Statistics#0" expanded="false" />
@@ -873,7 +913,6 @@
             <element signature="method#Statistics#0;class#Statistics#0" expanded="false" />
             <element signature="method#averageNumberOfPointsPerStudent#0;class#Statistics#0" expanded="false" />
             <element signature="method#histogramOfQuestions#0;class#Statistics#0" expanded="false" />
-            <element signature="method#histogramOfNumberOfPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countAllStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countQuestionPoints#0;class#Statistics#0" expanded="false" />
@@ -916,7 +955,6 @@
             <element signature="method#Statistics#0;class#Statistics#0" expanded="false" />
             <element signature="method#averageNumberOfPointsPerStudent#0;class#Statistics#0" expanded="false" />
             <element signature="method#histogramOfQuestions#0;class#Statistics#0" expanded="false" />
-            <element signature="method#histogramOfNumberOfPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countAllStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countQuestionPoints#0;class#Statistics#0" expanded="false" />
@@ -945,7 +983,6 @@
             <element signature="method#Statistics#0;class#Statistics#0" expanded="false" />
             <element signature="method#averageNumberOfPointsPerStudent#0;class#Statistics#0" expanded="false" />
             <element signature="method#histogramOfQuestions#0;class#Statistics#0" expanded="false" />
-            <element signature="method#histogramOfNumberOfPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countAllStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countQuestionPoints#0;class#Statistics#0" expanded="false" />
@@ -977,6 +1014,27 @@
     <entry file="file://$PROJECT_DIR$/exam_data2/student3.csv" />
     <entry file="file://$PROJECT_DIR$/exam_data2/student4.csv" />
     <entry file="file://$PROJECT_DIR$/exam_data2/student1.csv" />
+    <entry file="file://$PROJECT_DIR$/JavaDoc/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Exam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Exam#0;class#Exam#0" expanded="false" />
+            <element signature="method#loadFromFiles#0;class#Exam#0" expanded="false" />
+            <element signature="method#loadKeyAnswers#0;class#Exam#0" expanded="false" />
+            <element signature="method#getFilesFromDirectory#0;class#Exam#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -988,38 +1046,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaDoc/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Exam.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Exam#0;class#Exam#0" expanded="false" />
-            <element signature="method#loadFromFiles#0;class#Exam#0" expanded="false" />
-            <element signature="method#loadKeyAnswers#0;class#Exam#0" expanded="false" />
-            <element signature="method#getFilesFromDirectory#0;class#Exam#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Statistics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        <state relative-caret-position="451">
+          <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Statistics#0;class#Statistics#0" expanded="false" />
             <element signature="method#averageNumberOfPointsPerStudent#0;class#Statistics#0" expanded="false" />
             <element signature="method#histogramOfQuestions#0;class#Statistics#0" expanded="false" />
-            <element signature="method#histogramOfNumberOfPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countAllStudentPoints#0;class#Statistics#0" expanded="false" />
             <element signature="method#countQuestionPoints#0;class#Statistics#0" expanded="false" />

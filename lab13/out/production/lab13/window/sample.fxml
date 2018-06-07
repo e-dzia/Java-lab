@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.transform.Affine?>
+
+<FlowPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="window.Controller">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Exit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#aboutAuthor" text="Author" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane fx:id="tabs" prefHeight="358.0" prefWidth="586.0">
+         <tabs>
+             <Tab text="Opis">
+                 <content>
+                     <ScrollPane layoutX="1.0" prefHeight="400.0" prefWidth="500.0">
+                             <content>
+                     <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0">
+                         <children>
+                             <Text fill="#FF0000" text="GRA&#13;&#13;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                 <font>
+                                     <Font name="Arial Black" size="24.0" />
+                                 </font>
+                                 <transforms>
+                                     <javafx.scene.transform.Affine mxx="0.97" mxy="0.19" myx="-0.19" myy="0.97" tx="50" ty="50" />
+                                 </transforms>
+                             </Text>
+                             <Label alignment="CENTER" contentDisplay="CENTER" text=" Twoim zadaniem jest zdobycie wiekszej liczby punktow niz ma przeciwnik.&#13;         &#13; Wyzsza karta zawsze wygrywa.&#13; Punktacja:&#13; 2 - wygrana&#13; 1 - remis&#13; 0 - przegrana&#13;" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                              <ImageView fx:id="boximage" fitHeight="300.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
+                         </children>
+                           <columnConstraints>
+                              <ColumnConstraints />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                           </rowConstraints>
+                     </GridPane>
+                 </content>
+                     </ScrollPane>
+                 </content>
+             </Tab>
+            <Tab text="Gra">
+               <content>
+                <ScrollPane layoutX="1.0" prefHeight="340.0" prefWidth="500.0">
+                <content>
+                  <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="500.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Twoje karty" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <ScrollPane layoutX="1.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.rowSpan="5">
+                           <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <ListView fx:id="lstCardsPlayer" prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Punkty" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                         <Text fx:id="txtPointsPlayer" text="Punkty" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+      
+      
+                         <Text fx:id="nowRound" text="Aktualna runda" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <!--<ComboBox fx:id="cmbCardsPlayer" prefWidth="150.0" promptText="Wybierz karte" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        -->
+                        <Button fx:id="btnGotowe" mnemonicParsing="false" onAction="#handleBtnGotowe" text="Gotowe" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Karta przeciwnika:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Text fx:id="txtCardComputer" text="Karta przeciwnika:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                         <Button fx:id="btnDalej" mnemonicParsing="false" onAction="#handleBtnDalej" text="Kolejna Runda" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      
+      
+                         <Label alignment="CENTER" contentDisplay="CENTER" text="Karty przeciwnika" GridPane.columnIndex="2" />
+                        <ScrollPane fx:id="scrollCardsComputer" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="4">
+                             <content>
+                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="189.0">
+                                       <children>
+                                          <ListView fx:id="lstCardsComputer" prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </AnchorPane>
+                             </content>
+                        </ScrollPane>
+                         <Label alignment="CENTER" contentDisplay="CENTER" text="Punkty" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                         <Text fx:id="txtPointsComputer" text="Punkty" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                         <ComboBox fx:id="cmbStrategy" prefWidth="150.0" promptText="Wybierz strategie" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                         <Text fx:id="txtInfo" text="Gra rozpoczeta" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="9" />
+                              <CheckBox fx:id="checkHide" mnemonicParsing="false" onAction="#handleBtnUkryj" text="Ukryj" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                     </children>
+      
+                           <columnConstraints>
+                              <ColumnConstraints />
+                              <ColumnConstraints />
+                              <ColumnConstraints />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                           </rowConstraints>
+                  </GridPane>
+               </content>
+                </ScrollPane>
+               </content>
+            </Tab>
+      
+         </tabs>
+      </TabPane>
+   </children>
+</FlowPane>
