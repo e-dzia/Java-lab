@@ -19,4 +19,13 @@ public class Password {
 
         return sb.toString();
     }
+    
+    public static void main(String[] args) {
+        String password = "123";
+        try {
+            System.out.println(sha1(password));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
 }

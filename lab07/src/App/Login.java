@@ -50,7 +50,7 @@ public class Login extends JFrame {
                     catch(NullPointerException e1){
                         JOptionPane.showMessageDialog(null, "Pracownik o podanym ID nie istnieje.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-         //       }
+                //}
             }
         });
         anulujButton.addActionListener(new ActionListener() {
